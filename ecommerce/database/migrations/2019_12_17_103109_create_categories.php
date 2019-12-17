@@ -17,7 +17,7 @@ class CreateCategories extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->float('discount', 4, 2);
-            $table->bigInteger('parent_id');
+            $table->bigInteger('parent_id')->nullable();
             $table->timestamps();
         });
     }
