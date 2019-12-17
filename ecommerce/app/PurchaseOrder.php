@@ -12,6 +12,6 @@ class PurchaseOrder extends Model
     }
 
     public function getProducts() {
-        return $this->belongsToMany('App\Product', 'product_purchase_order', 'purchase_order_id', 'product_id');
+        return $this->belongsToMany('App\Product', 'product_purchase_order', 'purchase_order_id', 'product_id')->withPivot('quantity');
     }
 }

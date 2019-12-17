@@ -12,7 +12,7 @@ class Product extends Model
     }
 
     public function getPurchaseOrders() {
-        return $this->belongsToMany('App\PurchaseOrder', 'product_purchase_order', 'product_id', 'purchase_order_id');
+        return $this->belongsToMany('App\PurchaseOrder', 'product_purchase_order', 'product_id', 'purchase_order_id')->withPivot('quantity');
     }
 
     public function getCategory() {
