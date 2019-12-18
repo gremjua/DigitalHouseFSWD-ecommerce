@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class PurchaseOrder extends Model
 {
     //
+    protected $fillable = ['is_done'];
+
     public function user() {
         return $this->belongsTo('App\User');
     }

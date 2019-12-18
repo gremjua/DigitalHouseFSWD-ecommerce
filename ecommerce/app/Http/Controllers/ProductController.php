@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Product;
 
 class ProductController extends Controller
@@ -19,6 +20,8 @@ class ProductController extends Controller
         $user = Auth::user();
         $user->seenProducts()->attach($product->id);
 
-        return view('product', compact('product', 'added'));
+        $comments = $product->comments;
+
+        return view('productDetail', compact('product', 'comments', 'added'));
     }
 }
