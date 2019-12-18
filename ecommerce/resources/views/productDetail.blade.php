@@ -61,7 +61,24 @@
                             {{-- <p>There are no comments for this product</p>  --}}
                          @endforelse
                         {{-- <hr> --}}
-                        <a href="#" class="btn btn-success">Leave a Comment</a>
+                        <form action="/comment" method="post" class="form-horizontal" id="commentForm" role="form"> 
+                            @csrf
+                            <input type="hidden" name="productId" value="{{$product->id}}">
+                            <div class="form-group">
+                                <label for="text" class="col-sm-2 control-label">Comment</label>
+                                <div class="col-sm-10">
+                                    <textarea class="form-control" name="text" id="text" rows="5"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-offset-2 col-sm-10">                    
+                                    <button class="btn btn-success" type="submit" id="submitComment"><span class="glyphicon glyphicon-send"></span>Submit</button>
+                                </div>
+                            </div>            
+                        </form>
+
+                        <button class="btn btn-success" onclick="event.preventDefault();makeComment()" id="commentBtn">Leave a Comment</button>
+                        
                     </div>
                 </div>
                 <!-- /.card -->

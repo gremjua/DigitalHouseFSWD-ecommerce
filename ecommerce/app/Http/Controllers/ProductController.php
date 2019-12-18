@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Product;
+use App\Comment;
 
 class ProductController extends Controller
 {
@@ -25,5 +26,14 @@ class ProductController extends Controller
         $comments = $product->comments;
 
         return view('productDetail', compact('product', 'comments', 'added'));
+    }
+
+    public function comment(Request $req) {
+        $user = Auth::user();
+        
+        $comment = new Comment(['text'=>$req->text,'user_id'=>$user->id,'product_id'=>$req->productId]);
+        $user->comments()->save($comment);
+
+        return redirect("/product/$req->productId");
     }
 }

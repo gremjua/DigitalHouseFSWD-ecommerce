@@ -21,6 +21,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/products', 'ProductController@directory');
 Route::get('/product/{id}/{added?}', 'ProductController@show');
+Route::post('/comment', 'ProductController@comment');
 
 Route::get('/cart', 'PurchaseOrderController@show')->middleware('auth');
 Route::post('/cart/add', 'PurchaseOrderController@add')->middleware('auth');    //product id and  (if it already exists, add to quantity)
