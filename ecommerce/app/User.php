@@ -37,15 +37,15 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function getPurchaseOrders() {
+    public function purchaseOrders() {
         return $this->hasMany('App\PurchaseOrder');
     }
 
-    public function getSeenProducts() {
+    public function seenProducts() {
         return $this->belongsToMany('App\Product', 'user_product', 'user_id', 'product_id');
     }
 
-    public function getMadeComments() {
+    public function comments() {
         return $this->hasMany('App\Comment');
     }
 }

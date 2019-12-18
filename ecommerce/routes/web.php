@@ -20,7 +20,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/products', 'ProductController@directory');
-Route::get('/product/{id}', 'ProductController@show');
+Route::get('/product/{id}/{added?}', 'ProductController@show');
 
 Route::get('/cart', 'PurchaseOrderController@show');
 Route::post('/cart/add', 'PurchaseOrderController@add');    //product id and  (if it already exists, add to quantity)
