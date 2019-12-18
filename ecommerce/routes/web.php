@@ -18,3 +18,13 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/products', 'ProductController@directory');
+Route::get('/product/{id}', 'ProductController@show');
+
+Route::get('/cart', 'PurchaseOrderController@show');
+Route::post('/cart/add', 'PurchaseOrderController@store');
+
+Route::get('/checkout', 'PurchaseOrderController@checkout');
+Route::get('/checkout/confirm', 'PurchaseOrderController@confirm');
+
