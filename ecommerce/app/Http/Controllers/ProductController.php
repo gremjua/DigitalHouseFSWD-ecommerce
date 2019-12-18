@@ -31,8 +31,12 @@ class ProductController extends Controller
     public function comment(Request $req) {
         $user = Auth::user();
         
-        $comment = new Comment(['text'=>$req->text,'user_id'=>$user->id,'product_id'=>$req->productId]);
-        $user->comments()->save($comment);
+        // $com = new App\Comment(['text' => $req->text,'user_id' => $user->id, 'product_id' => $req->productId]);
+        // $user->comments()->save($com);
+
+        $com = new Comment(['text' => $req->text,"user_id" => $user->id, 'product_id' => $req->productId]);
+        $com->save();
+        // Comment::save(['text' => $req->text, 'user_id' => $user->id, 'product_id' => $req->productId]);
 
         return redirect("/product/$req->productId");
     }

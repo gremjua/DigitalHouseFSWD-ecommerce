@@ -97,3 +97,26 @@
   #commentForm {
       display: none;
   }
+
+  .nav-link i {
+      position: relative;
+  }
+
+  span.red {
+    background: red;
+     border-radius: 0.8em;
+    -moz-border-radius: 0.8em;
+    -webkit-border-radius: 0.8em;
+    color: #ffffff;
+    display: inline-block;
+    font-weight: bold;
+    line-height: 1.6em;
+    margin-right: 15px;
+    text-align: center;
+    width: 1.6em; 
+    position: absolute;
+    font-size: 0.5em;
+    bottom: -100%;
+    right: -30%;
+
+  }

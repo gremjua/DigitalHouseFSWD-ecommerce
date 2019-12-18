@@ -1,3 +1,17 @@
+<?php
+    use App\PurchaseOrder;
+    $user = Auth::user();
+    if(isset($user)){
+        $cart = $user->purchaseOrders()->where('is_done', false)->get()->first();
+        $itemsInCart = 0;
+
+        foreach($cart->products as $product) {
+            $itemsInCart+=$product->pivot->quantity;
+        }
+        // $itemsInCart = count($cart->products()->get());
+    }
+    
+?>
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
@@ -55,7 +69,13 @@
                             @endif
                         @else
                             <li>
-                                <a class="nav-link" href="/cart">Cart<i class="fa fa-shopping-cart fa-lg" aria-hidden="true"></i></a>
+                                <a class="nav-link" href="/cart">Cart<i class="fa fa-shopping-cart fa-lg" aria-hidden="true">
+                                    @if (isset($itemsInCart))
+                                        <span class="red">{{$itemsInCart}}</span>
+                                    @endif
+                                </i>
+                                    </a>
+                                
                             </li>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
