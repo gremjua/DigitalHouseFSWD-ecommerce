@@ -7,19 +7,19 @@ use Illuminate\Database\Eloquent\Model;
 class Product extends Model
 {
     //
-    public function getUsersWhoHaveSeenIt() {
+    public function usersWhoHaveSeenIt() {
         return $this->belongsToMany('App\User', 'user_product', 'product_id', 'user_id');
     }
 
-    public function getPurchaseOrders() {
+    public function purchaseOrders() {
         return $this->belongsToMany('App\PurchaseOrder', 'product_purchase_order', 'product_id', 'purchase_order_id')->withPivot('quantity');
     }
 
-    public function getCategory() {
+    public function category() {
         return $this->belongsTo('App\Category');
     }
 
-    public function getComments() {
+    public function comments() {
         return $this->hasMany('App\Comment');
     }
 }

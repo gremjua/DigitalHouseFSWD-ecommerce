@@ -14,7 +14,7 @@ class AddQuantityColumnToPivotTable extends Migration
     public function up()
     {
         Schema::table('product_purchase_order', function (Blueprint $table) {
-            $table->integer('quantity')->after('purchase_order_id');
+            $table->integer('quantity')->after('purchase_order_id')->default(1);
         });
     }
 
