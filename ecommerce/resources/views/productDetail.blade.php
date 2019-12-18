@@ -16,7 +16,7 @@
                     @csrf
                     <input type="hidden" name="productId" value="{{$product->id}}">
                     @if($product->stock >=1)
-                        <button class="btn btn-dark btn-lg btn-block" type="submit">Add to Cart</button>
+                        <button class="btn btn-dark btn-lg btn-block" type="submit" onclick="showSnackBar()">Add to Cart</button>
                         {{-- <a href="#" class="list-group-item active">Add To Cart</a> --}}
                         <input name="quantity" type="number" class="text-center form-control" value="1" min="1" max="{{$product->stock}}">
                     @else
@@ -68,6 +68,8 @@
             <!-- /.col-lg-9 -->
 
         </div>
+
+        <div id="snackbar">You added an item to your cart!</div>
 
     </div>
       <!-- /.container -->

@@ -22,10 +22,10 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/products', 'ProductController@directory');
 Route::get('/product/{id}/{added?}', 'ProductController@show');
 
-Route::get('/cart', 'PurchaseOrderController@show');
-Route::post('/cart/add', 'PurchaseOrderController@add');    //product id and  (if it already exists, add to quantity)
-Route::delete('/cart', 'PurchaseOrderController@delete');   //product id -- delete all quantity
+Route::get('/cart', 'PurchaseOrderController@show')->middleware('auth');
+Route::post('/cart/add', 'PurchaseOrderController@add')->middleware('auth');    //product id and  (if it already exists, add to quantity)
+Route::delete('/cart', 'PurchaseOrderController@delete')->middleware('auth');   //product id -- delete all quantity
 
-Route::get('/checkout', 'CheckoutController@show');
-Route::get('/checkout/confirm', 'CheckoutController@confirm');
+Route::get('/checkout', 'CheckoutController@show')->middleware('auth');
+Route::get('/checkout/confirm', 'CheckoutController@confirm')->middleware('auth');
 

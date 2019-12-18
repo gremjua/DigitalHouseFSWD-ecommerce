@@ -11,7 +11,7 @@ class PurchaseOrderController extends Controller
 {
     public function show() {
         $user = Auth::user();
-        $cart = $user->purchaseOrders()->where('is_done', false)->get();
+        $cart = $user->purchaseOrders()->where('is_done', false)->get()->first();
         return view('cart', compact('cart'));   //cart can be empty
     }
 
@@ -44,15 +44,13 @@ class PurchaseOrderController extends Controller
             $cart->first()->products()->attach($product->id, ['quantity' => $req['quantity']]);
         }
 
-        
-
         return redirect("/product/$product->id/added");
     }
 
     public function delete(Request $req) {
         $user = Auth::user();
         $product = Product::find($req->productId);
-        $cart = $user->purchaseOrders()->where('is_done', false)->get();
+        $cart = PurchaseOrder::find($req->cartId);
 
         $cart->products()->detach($product->id);
 

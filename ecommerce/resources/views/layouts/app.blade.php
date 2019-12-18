@@ -11,6 +11,7 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+    <script type="text/javascript" src="{{ asset('js/extra.js') }}"></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -54,7 +55,7 @@
                             @endif
                         @else
                             <li>
-                                <a class="nav-link" href="/cart">Cart</a>
+                                <a class="nav-link" href="/cart">Cart<i class="fa fa-shopping-cart fa-lg" aria-hidden="true"></i></a>
                             </li>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>

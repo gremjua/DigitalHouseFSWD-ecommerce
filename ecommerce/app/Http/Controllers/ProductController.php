@@ -18,7 +18,9 @@ class ProductController extends Controller
         $product = Product::find($id);
 
         $user = Auth::user();
-        $user->seenProducts()->attach($product->id);
+        if(isset($user)){
+            $user->seenProducts()->attach($product->id);
+        }
 
         $comments = $product->comments;
 
