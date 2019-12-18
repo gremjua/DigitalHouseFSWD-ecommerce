@@ -18,7 +18,7 @@
                     @csrf
                     <input type="hidden" name="productId" value="{{$product->id}}">
                     @if($product->stock >=1)
-                        <button class="btn btn-dark btn-lg btn-block" type="submit" onclick="showSnackBar()">Add to Cart</button>
+                        <button class="btn btn-dark btn-lg btn-block" type="submit" @if(Auth::check())onclick="showSnackBar()"@endif>Add to Cart</button>
                         {{-- <a href="#" class="list-group-item active">Add To Cart</a> --}}
                         <input name="quantity" type="number" class="text-center form-control" value="1" min="1" max="{{$product->stock}}">
                     @else
@@ -77,7 +77,7 @@
                             </div>            
                         </form>
 
-                        <button class="btn btn-success" onclick="event.preventDefault();makeComment()" id="commentBtn">Leave a Comment</button>
+                        <button class="btn btn-success" @if(Auth::check())onclick="event.preventDefault();makeComment()"@else onclick="window.location.href='/login'"@endif id="commentBtn">Leave a Comment</button>
                         
                     </div>
                 </div>
