@@ -6,6 +6,8 @@
 
 @section('content')
 
+    <div id="snackbar">You added an item to your cart!</div>
+
     <div class="container">
 
         <div class="row">
@@ -68,8 +70,6 @@
             <!-- /.col-lg-9 -->
 
         </div>
-
-        <div id="snackbar">You added an item to your cart!</div>
 
     </div>
       <!-- /.container -->

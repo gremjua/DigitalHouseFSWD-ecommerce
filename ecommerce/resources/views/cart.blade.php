@@ -6,6 +6,8 @@
 
 @section('content')
 
+<div id="snackbar">You removed an item from your cart!</div>
+
 <div class="container">
 <!-- Shopping cart table -->
           <div class="table-responsive">
@@ -51,7 +53,7 @@
                                 <input type="hidden" name="_method" value="DELETE">
                                 <input type="hidden" name="productId" value="{{$product->id}}">
                                 <input type="hidden" name="cartId" value="{{$cart->id}}">
-                                <button type="submit" class="border-0 bg-transparent text-dark btn btn-lg"><i class="fa fa-trash"></i></a>
+                                <button type="submit" class="border-0 bg-transparent text-dark btn btn-lg" onclick="showSnackBar()"><i class="fa fa-trash"></i></button>
                             </form>
                         </td>
                     </tr>
