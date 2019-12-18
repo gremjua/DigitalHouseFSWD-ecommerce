@@ -1,5 +1,29 @@
 @extends('layouts.app')
 
+<?php
+// SDK de Mercado Pago
+require '../vendor/autoload.php';
+// Agrega credenciales
+MercadoPago\SDK::setAccessToken(env('MP_ACCESS_TOKEN',''));
+
+// Crea un objeto de preferencia
+$preference = new MercadoPago\Preference();
+
+if(!empty($cart->products->all())){
+  foreach ($cart->products as $product){
+    $item = new MercadoPago\Item();
+    $item->title = $product->name;
+    $item->quantity = $product->pivot->quantity;
+    $item->unit_price = $product->price;
+    $myItems[] = $item;
+  }
+  $preference->items = $myItems;
+  $preference->save();
+}
+
+
+?>
+
 @section('title')
     Cart
 @endsection
@@ -82,7 +106,8 @@
             </table>
             @if (isset($subTotals))
                 <div class="container text-center">
-                    <button class="btn btn-lg btn-dark" type="submit">Check Out</button>
+                    <button class="btn btn-lg btn-dark" type="submit" onclick="window.location.href='{{$preference->sandbox_init_point}}'">Check Out</button>
+                    {{-- <button class="btn btn-lg btn-dark" type="submit" onclick="window.location.href='/checkout'">Check Out</button> --}}
                 </div>
             @endif
           </div>
