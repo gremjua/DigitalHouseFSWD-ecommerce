@@ -23,8 +23,9 @@ Route::get('/products', 'ProductController@directory');
 Route::get('/product/{id}', 'ProductController@show');
 
 Route::get('/cart', 'PurchaseOrderController@show');
-Route::post('/cart/add', 'PurchaseOrderController@store');
+Route::post('/cart/add', 'PurchaseOrderController@add');    //product id and  (if it already exists, add to quantity)
+Route::delete('/cart', 'PurchaseOrderController@delete');   //product id -- delete all quantity
 
-Route::get('/checkout', 'PurchaseOrderController@checkout');
-Route::get('/checkout/confirm', 'PurchaseOrderController@confirm');
+Route::get('/checkout', 'CheckoutController@checkout');
+Route::get('/checkout/confirm', 'CheckoutController@confirm');
 
