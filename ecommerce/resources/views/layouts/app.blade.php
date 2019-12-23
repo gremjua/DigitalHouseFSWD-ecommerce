@@ -1,14 +1,20 @@
 <?php
     use App\PurchaseOrder;
-    $user = Auth::user();
-    if(isset($user)){
+    
+    if(Auth::check()){
+        $user = Auth::user();
         $cart = $user->purchaseOrders()->where('is_done', false)->get()->first();
         $itemsInCart = 0;
-
-        foreach($cart->products as $product) {
-            $itemsInCart+=$product->pivot->quantity;
+        if(isset($cart)){   //if there is a cart
+            foreach($cart->products as $product) {
+                $itemsInCart+=$product->pivot->quantity;
+            }
         }
-        // $itemsInCart = count($cart->products()->get());
+        else{
+            //create cart
+            $po = new PurchaseOrder(['is_done' => false]);
+            $user->purchaseOrders()->save($po);
+        }
     }
     
 ?>
